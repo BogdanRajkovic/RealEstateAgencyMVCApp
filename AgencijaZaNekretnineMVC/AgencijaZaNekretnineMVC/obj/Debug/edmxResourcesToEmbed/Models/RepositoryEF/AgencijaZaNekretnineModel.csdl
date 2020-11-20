@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AgencijaZaNekretnineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="NekretninaModel">
+    <Key>
+      <PropertyRef Name="NekretninaID" />
+    </Key>
+    <Property Name="NekretninaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Opstina" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Spratnost" Type="Int32" />
+    <Property Name="Povrsina" Type="Double" />
+    <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Namestenost" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VrstaNekretnine" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Struktura" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Stanje" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Sprat" Type="Int32" />
+    <Property Name="DodatneKarakteristike" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Napomena" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NekretnineSlike" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VlasnikID" Type="Int32" />
+    <NavigationProperty Name="Osoba" Relationship="Self.fk_Nekretnina_Osoba" FromRole="Nekretnina" ToRole="Osoba" />
+    <NavigationProperty Name="ZakazivanjeGledanjaNekretnines" Relationship="Self.fk_Zakazivanje_Nekretnina" FromRole="Nekretnina" ToRole="ZakazivanjeGledanjaNekretnine" />
+  </EntityType>
+  <EntityType Name="OsobaModel">
+    <Key>
+      <PropertyRef Name="OsobaID" />
+    </Key>
+    <Property Name="OsobaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="KorisnickoIme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sifra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pol" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="JMBG" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="BrojLicneKarte" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="Adresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BrojMobilnog" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <NavigationProperty Name="Nekretninas" Relationship="Self.fk_Nekretnina_Osoba" FromRole="Osoba" ToRole="Nekretnina" />
+    <NavigationProperty Name="ZakazivanjeGledanjaNekretnines" Relationship="Self.fk_Zakazivanje_Osoba" FromRole="Osoba" ToRole="ZakazivanjeGledanjaNekretnine" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ZakazivanjeGledanjaNekretnineModel">
+    <Key>
+      <PropertyRef Name="ZakazivanjeID" />
+    </Key>
+    <Property Name="ZakazivanjeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatumVreme" Type="DateTime" Precision="3" />
+    <Property Name="NekretninaID" Type="Int32" />
+    <Property Name="KupacID" Type="Int32" />
+    <NavigationProperty Name="Nekretnina" Relationship="Self.fk_Zakazivanje_Nekretnina" FromRole="ZakazivanjeGledanjaNekretnine" ToRole="Nekretnina" />
+    <NavigationProperty Name="Osoba" Relationship="Self.fk_Zakazivanje_Osoba" FromRole="ZakazivanjeGledanjaNekretnine" ToRole="Osoba" />
+  </EntityType>
+  <Association Name="fk_Nekretnina_Osoba">
+    <End Role="Osoba" Type="AgencijaZaNekretnineModel.OsobaModel" Multiplicity="0..1" />
+    <End Role="Nekretnina" Type="AgencijaZaNekretnineModel.NekretninaModel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osoba">
+        <PropertyRef Name="OsobaID" />
+      </Principal>
+      <Dependent Role="Nekretnina">
+        <PropertyRef Name="VlasnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Zakazivanje_Nekretnina">
+    <End Role="Nekretnina" Type="AgencijaZaNekretnineModel.NekretninaModel" Multiplicity="0..1" />
+    <End Role="ZakazivanjeGledanjaNekretnine" Type="AgencijaZaNekretnineModel.ZakazivanjeGledanjaNekretnineModel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nekretnina">
+        <PropertyRef Name="NekretninaID" />
+      </Principal>
+      <Dependent Role="ZakazivanjeGledanjaNekretnine">
+        <PropertyRef Name="NekretninaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Zakazivanje_Osoba">
+    <End Role="Osoba" Type="AgencijaZaNekretnineModel.OsobaModel" Multiplicity="0..1" />
+    <End Role="ZakazivanjeGledanjaNekretnine" Type="AgencijaZaNekretnineModel.ZakazivanjeGledanjaNekretnineModel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osoba">
+        <PropertyRef Name="OsobaID" />
+      </Principal>
+      <Dependent Role="ZakazivanjeGledanjaNekretnine">
+        <PropertyRef Name="KupacID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AgencijaZaNekretnineEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="NekretninaModels" EntityType="AgencijaZaNekretnineModel.NekretninaModel" />
+    <EntitySet Name="OsobaModels" EntityType="AgencijaZaNekretnineModel.OsobaModel" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="ZakazivanjeGledanjaNekretnineModels" EntityType="AgencijaZaNekretnineModel.ZakazivanjeGledanjaNekretnineModel" />
+    <AssociationSet Name="fk_Nekretnina_Osoba" Association="Self.fk_Nekretnina_Osoba">
+      <End Role="Osoba" EntitySet="OsobaModels" />
+      <End Role="Nekretnina" EntitySet="NekretninaModels" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Zakazivanje_Nekretnina" Association="Self.fk_Zakazivanje_Nekretnina">
+      <End Role="Nekretnina" EntitySet="NekretninaModels" />
+      <End Role="ZakazivanjeGledanjaNekretnine" EntitySet="ZakazivanjeGledanjaNekretnineModels" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Zakazivanje_Osoba" Association="Self.fk_Zakazivanje_Osoba">
+      <End Role="Osoba" EntitySet="OsobaModels" />
+      <End Role="ZakazivanjeGledanjaNekretnine" EntitySet="ZakazivanjeGledanjaNekretnineModels" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(AgencijaZaNekretnineModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(AgencijaZaNekretnineModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

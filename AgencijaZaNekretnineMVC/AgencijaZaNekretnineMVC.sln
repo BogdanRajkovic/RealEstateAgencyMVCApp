@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgencijaZaNekretnineMVC", "AgencijaZaNekretnineMVC\AgencijaZaNekretnineMVC.csproj", "{1917ED20-BBE5-4D1D-B0D9-B9663F8B571B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1917ED20-BBE5-4D1D-B0D9-B9663F8B571B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1917ED20-BBE5-4D1D-B0D9-B9663F8B571B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1917ED20-BBE5-4D1D-B0D9-B9663F8B571B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1917ED20-BBE5-4D1D-B0D9-B9663F8B571B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EAFD89D-6A19-4CB0-9B39-775E554D4B38}
+	EndGlobalSection
+EndGlobal

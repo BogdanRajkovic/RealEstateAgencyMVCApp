@@ -1,0 +1,187 @@
+﻿@model AgencijaZaNekretnineMVC.Models.NekretninaBO
+
+@{
+    ViewBag.Title = "UnosNekretnine";
+}
+
+<h2>Unos Nekretnine</h2>
+
+@using (Html.BeginForm("UnosNekretnine","Nekretnina",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Adresa, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Adresa, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Adresa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Opstina, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Opstina,
+                new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Cukarica", Value = "Cukarica" },
+                    new SelectListItem { Text = "Novi Beograd", Value = "Novi Beograd" },
+                    new SelectListItem { Text = "Palilula", Value = "Palilula" },
+                    new SelectListItem { Text = "Rakovica", Value = "Rakovica" },
+                    new SelectListItem { Text = "Savski venac", Value = "Savski venac" },
+                    new SelectListItem { Text = "Stari grad", Value = "Stari grad" },
+                    new SelectListItem { Text = "Vozdovac", Value = "Vozdovac" },
+                    new SelectListItem { Text = "Vracar", Value = "Vracar" },
+                    new SelectListItem { Text = "Zemun", Value = "Zemun" },
+                    new SelectListItem { Text = "Zvezdara", Value = "Zvezdara" },
+                    new SelectListItem { Text = "Barajevo", Value = "Barajevo" },
+                    new SelectListItem { Text = "Grocka", Value = "Grocka" },
+                    new SelectListItem { Text = "Lazarevac", Value = "Lazarevac" },
+                    new SelectListItem { Text = "Mladenovac", Value = "Mladenovac" },
+                    new SelectListItem { Text = "Obrenovac", Value = "Obrenovac" },
+                    new SelectListItem { Text = "Sopot", Value = "Sopot" },
+                    new SelectListItem { Text = "Surcin", Value = "Surcin" },
+                },
+                htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Opstina, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Spratnost, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Spratnost, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Spratnost, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Povrsina, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Povrsina, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Povrsina, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cena, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Cena, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cena, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Namestenost, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Namestenost,
+        new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Namesten", Value = "Namesten" },
+                    new SelectListItem { Text = "Nenamesten", Value = "Nenamesten" },
+                }, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Namestenost, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VrstaNekretnine, "Vrsta Nekretnine", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.VrstaNekretnine,
+         new List<SelectListItem>
+                 {
+                     new SelectListItem { Text = "Stan", Value = "Stan" },
+                     new SelectListItem { Text = "Kuca", Value = "Kuca" },
+                     new SelectListItem { Text = "Soba", Value = "Soba" },
+                     new SelectListItem { Text = "Garaza", Value = "Garaza" },
+                     new SelectListItem { Text = "Zemljiste", Value = "Zemljiste" },
+                     new SelectListItem { Text = "Ostalo", Value = "Ostalo" },
+                 },
+         htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.VrstaNekretnine, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Struktura, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Struktura,
+           new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Garsonjera", Value = "Garsonjera" },
+                    new SelectListItem { Text = "Jednosoban", Value = "Jednosoban" },
+                    new SelectListItem { Text = "Jednoiposoban", Value = "Jednoiposoban" },
+                    new SelectListItem { Text = "Dvosoban", Value = "Dvosoban" },
+                    new SelectListItem { Text = "Dvoiposoban", Value = "Dvoiposoban" },
+                    new SelectListItem { Text = "Trosoban", Value = "Trosoban" },
+                    new SelectListItem { Text = "Troiposoban", Value = "Troiposoban" },
+                    new SelectListItem { Text = "Cetvorosoban", Value = "Cetvorosoban" },
+                    new SelectListItem { Text = "Cetvoroiposoban i veci", Value = "Cetvoroiposoban i veci" },
+                },
+             htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Struktura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Stanje,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Stanje,
+           new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Novo", Value = "Novo" },
+                    new SelectListItem { Text = "Staro", Value = "Staro" },
+                },
+            htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Stanje, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sprat, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Sprat, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Sprat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DodatneKarakteristike, "Dodatne Karakteristeke", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.DodatneKarakteristike, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DodatneKarakteristike, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Napomena, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+            @Html.LabelFor(model => model.NekretnineSlike, "Dodaj slike nekretnine", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Files" multiple required/>
+            </div>
+        </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Unesi nekretninu" class="btn btn-default" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <label class="label-success">@ViewBag.SuccessMessage</label>
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AgencijaZaNekretnineMVC.Models.ZakazivanjeGledanjaNekretnineBO>
+
+@{
+    ViewBag.Title = "GetAllZakazivanjaByOsoba";
+}
+
+<h2>Sva zakazivanja za osobu: @Session["korisnickoIme"]</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nekretnina.Adresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nekretnina.Opstina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nekretnina.Vlasnik.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nekretnina.Vlasnik.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nekretnina.Vlasnik.BrojMobilnog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nekretnina.Vlasnik.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumVreme)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nekretnina.Adresa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nekretnina.Opstina)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nekretnina.Vlasnik.Ime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nekretnina.Vlasnik.Prezime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nekretnina.Vlasnik.BrojMobilnog)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nekretnina.Vlasnik.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DatumVreme)
+    </td>
+</tr>
+}
+
+</table>

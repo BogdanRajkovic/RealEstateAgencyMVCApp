@@ -1,0 +1,45 @@
+﻿@model AgencijaZaNekretnineMVC.Models.OsobaBO
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login","Osoba",FormMethod.Post))
+{
+<div class="form-horizontal">
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.KorisnickoIme, "Korisnicko Ime", htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td style="margin: 10px; padding: 5px;">
+                @Html.EditorFor(model => model.KorisnickoIme, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KorisnickoIme, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Sifra, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td style="margin: 10px; padding: 5px;">
+                @Html.EditorFor(model => model.Sifra, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sifra, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" style="margin: 10px; padding: 5px;">
+                <input type="submit" value="LogIn" name="login" />
+                <input type="reset" value="Resetuj" name="reset" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <label class="label-success">@ViewBag.SuccessMessage</label>
+                <label class="label-success">@ViewBag.DuplicateMessage</label>
+            </td>
+        </tr>
+    </table>
+</div>
+}
+

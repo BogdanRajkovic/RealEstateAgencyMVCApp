@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c60ede618a345948f5735ee4d249efd" Name="Diagram1">
+        <EntityTypeShape EntityType="AgencijaZaNekretnineModel.NekretninaModel" Width="2.5" PointX="2.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgencijaZaNekretnineModel.OsobaModel" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgencijaZaNekretnineModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgencijaZaNekretnineModel.ZakazivanjeGledanjaNekretnineModel" Width="3.75" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="AgencijaZaNekretnineModel.fk_Nekretnina_Osoba" ManuallyRouted="false" />
+        <AssociationConnector Association="AgencijaZaNekretnineModel.fk_Zakazivanje_Nekretnina" ManuallyRouted="false" />
+        <AssociationConnector Association="AgencijaZaNekretnineModel.fk_Zakazivanje_Osoba" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

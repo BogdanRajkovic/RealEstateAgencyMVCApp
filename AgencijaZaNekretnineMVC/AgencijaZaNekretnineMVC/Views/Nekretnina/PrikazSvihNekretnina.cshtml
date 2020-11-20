@@ -1,0 +1,198 @@
+﻿@model AgencijaZaNekretnineMVC.Models.PrikazSvihNekretnina
+
+@{
+    ViewBag.Title = "Prikaz Svih Nekretnina";
+}
+
+<h2>Prikaz Svih Nekretnina</h2>
+@using (Html.BeginForm("PrikazSvihNekretnina", "Nekretnina", FormMethod.Post))
+{
+<div class="form-inline">
+    <div class="form-group">
+        <label class="control-label" for="opstina">Opstina: </label>
+        @Html.DropDownListFor(model => model.Filter.Opstina,
+                     new List<SelectListItem>
+                     {
+                         new SelectListItem { Text = "", Value = "" },
+                         new SelectListItem { Text = "Cukarica", Value = "Cukarica" },
+                         new SelectListItem { Text = "Novi Beograd", Value = "Novi Beograd" },
+                         new SelectListItem { Text = "Palilula", Value = "Palilula" },
+                         new SelectListItem { Text = "Rakovica", Value = "Rakovica" },
+                         new SelectListItem { Text = "Savski venac", Value = "Savski venac" },
+                         new SelectListItem { Text = "Stari grad", Value = "Stari grad" },
+                         new SelectListItem { Text = "Vozdovac", Value = "Vozdovac" },
+                         new SelectListItem { Text = "Vracar", Value = "Vracar" },
+                         new SelectListItem { Text = "Zemun", Value = "Zemun" },
+                         new SelectListItem { Text = "Zvezdara", Value = "Zvezdara" },
+                         new SelectListItem { Text = "Barajevo", Value = "Barajevo" },
+                         new SelectListItem { Text = "Grocka", Value = "Grocka" },
+                         new SelectListItem { Text = "Lazarevac", Value = "Lazarevac" },
+                         new SelectListItem { Text = "Mladenovac", Value = "Mladenovac" },
+                         new SelectListItem { Text = "Obrenovac", Value = "Obrenovac" },
+                         new SelectListItem { Text = "Sopot", Value = "Sopot" },
+                         new SelectListItem { Text = "Surcin", Value = "Surcin" },
+                     },
+                     htmlAttributes: new { @class = "form-control" })
+    </div>
+
+    <label class="control-label" for="povrsina">Povrsina: </label>
+    @Html.EditorFor(model => model.Filter.Povrsina, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
+
+    <label class="control-label" for="najnizaCena">Najmanja Cena: </label>
+    @Html.EditorFor(model => model.Filter.CenaNajniza, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
+
+    <label class="control-label" for="najvisaCena">Najveca Cena: </label>
+    @Html.EditorFor(model => model.Filter.CenaNajvisa, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
+
+    <label class="control-label" for="vrstaNekretnine">Vrsta Nekretnine: </label>
+    @Html.DropDownListFor(model => model.Filter.VrstaNekretnine,
+         new List<SelectListItem>
+                 {
+                     new SelectListItem { Text = "", Value = "" },
+                     new SelectListItem { Text = "Stan", Value = "Stan" },
+                     new SelectListItem { Text = "Kuca", Value = "Kuca" },
+                     new SelectListItem { Text = "Soba", Value = "Soba" },
+                     new SelectListItem { Text = "Garaza", Value = "Garaza" },
+                     new SelectListItem { Text = "Zemljiste", Value = "Zemljiste" },
+                     new SelectListItem { Text = "Ostalo", Value = "Ostalo" },
+                 },
+         htmlAttributes: new { @class = "form-control" })
+
+    <div class="form-group">
+        <input type="submit" value="Primeni filtere" class="btn btn-default" />
+    </div>
+</div>
+    
+}
+<table class="table">
+
+    @foreach (var item in Model.Nekretnine)
+    {
+        <tr>
+                <th>
+                   @nameof(item.Adresa)
+                </th>
+                <th>
+                    @nameof(item.Opstina)
+                </th>
+                <th>
+                    @nameof(item.Spratnost)
+                </th>
+                <th>
+                    @nameof(item.Povrsina)
+                </th>
+                <th>
+                    @nameof(item.Cena)
+                </th>
+                <th>
+                    @nameof(item.Namestenost)
+                </th>
+                <th>
+                    @nameof(item.VrstaNekretnine)
+                </th>
+                <th>
+                    @nameof(item.Struktura)
+                </th>
+                <th>
+                    @nameof(item.Stanje)
+                </th>
+                <th>
+                    @nameof(item.Sprat)
+                </th>
+                <th>
+                    @nameof(item.DodatneKarakteristike)
+                </th>
+                <th>
+                    @nameof(item.Namestenost)
+                </th>
+                <th>
+                    @nameof(item.Namestenost)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @item.Adresa
+                </td>
+                <td>
+                    @item.Opstina
+                </td>
+                <td>
+                    @item.Spratnost
+                </td>
+                <td>
+                    @item.Povrsina m²
+                </td>
+                <td>
+                    @item.Cena €
+                </td>
+                <td>
+                    @item.Namestenost
+                </td>
+                <td>
+                    @item.VrstaNekretnine
+                </td>
+                <td>
+                    @item.Struktura
+                </td>
+                <td>
+                    @item.Stanje
+                </td>
+                <td>
+                    @item.Sprat
+                </td>
+                <td>
+                    @item.DodatneKarakteristike
+                </td>
+                <td>
+                    @item.DodatneKarakteristike
+                </td>
+        <td>
+            @foreach (var i in item.Slike)
+            {
+                var path = $"~/~/Slike/Nekretnina-{item.NekretninaID}/{i.Putanja}";
+                <img src="@Url.Content(path)" style="height:100px;width:250px;">
+                @*<img style="height:50px;width:100px;" @Html.Raw(path);>*@
+            }
+        </td>
+        <td>
+            <button onclick="location.href='@Url.Action("ZakazivanjeGledanjaNekretnine", "ZakazivanjeGledanjaNekretnine",routeValues: new
+                                 {
+                                id = item.NekretninaID
+                            })';return false;">
+                Rezervisi Gledanje
+            </button>
+            @*@Html.ActionLink(
+                            linkText: "Rezervisi Gledanje",
+                            actionName: "ZakazivanjeGledanjaNekretnine",
+                            controllerName: "ZakazivanjeGledanjaNekretnine",
+                            routeValues: new
+                                 {
+                                id = item.NekretninaID
+                            },
+                            htmlAttributes: null
+                            )*@
+
+            @if (Convert.ToBoolean(Session["IsAdmin"]) == true)
+            {
+                <button onclick="location.href='@Url.Action("IzmenaNekretnine", "Nekretnina",routeValues: new
+                                 {
+                                id = item.NekretninaID
+                            })';return false;">
+                    Izmena Nekretnine
+                </button>
+                @*@Html.ActionLink(
+            linkText: "Izmena nekretnine",
+            actionName: "IzmenaNekretnine",
+            controllerName: "Nekretnina",
+            routeValues: new
+                 {
+                id = item.NekretninaID
+            },
+            htmlAttributes: null
+            )*@
+            }
+        </td>
+        </tr>
+    }
+
+</table>

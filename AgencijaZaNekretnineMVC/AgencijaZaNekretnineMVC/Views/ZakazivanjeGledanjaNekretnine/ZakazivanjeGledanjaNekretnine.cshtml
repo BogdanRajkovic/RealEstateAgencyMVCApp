@@ -1,0 +1,34 @@
+﻿@model AgencijaZaNekretnineMVC.Models.ZakazivanjeGledanjaNekretnineBO
+
+@{
+    ViewBag.Title = "ZakazivanjeGledanjaNekretnine";
+
+}
+
+<h2>Zakazivanje Gledanja Nekretnine</h2>
+
+@using (Html.BeginForm("SacuvajZakazivanje", "ZakazivanjeGledanjaNekretnine", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DatumVreme, htmlAttributes: new {@class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DatumVreme, new { type="date",required="required"})
+                @Html.ValidationMessageFor(model => model.DatumVreme, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Zakazi gledanje" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

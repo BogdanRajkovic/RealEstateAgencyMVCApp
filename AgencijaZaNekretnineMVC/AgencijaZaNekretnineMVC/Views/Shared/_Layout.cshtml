@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("MojS(t)an", "PrikazSvihNekretnina", "Nekretnina", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Pregled Nekretnina", "PrikazSvihNekretnina", "Nekretnina")</li>
+                    <li>@Html.ActionLink("Oglasavanje Nekretnine", "UnosNekretnine", "Nekretnina")</li>
+                    <li>@Html.ActionLink("Zakazana gledanja", "GetAllZakazivanjaByOsoba", "ZakazivanjeGledanjaNekretnine")</li>
+                    <li>@Html.ActionLink("Registracija", "Registracija", "Osoba")</li>
+
+
+
+                    @if (Session["osobaId"] != null)
+                    {
+                        //Dodati korisnicko ime ulogovanog usera Proveriti kako se to radi
+                        <li>@Html.ActionLink("LogOut", "Logout", "Osoba")</li>
+                        <li style="color:white"> Ulogovan kao: @Session["korisnickoIme"]</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("LogIn", "Login", "Osoba")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Aplikacija - Agencija za nekretnine</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
