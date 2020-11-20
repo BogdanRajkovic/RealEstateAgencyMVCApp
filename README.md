@@ -2,7 +2,7 @@
 
 Technologies:
 
-JavaScript, C#, SQL
+JavaScript, C#, ASP.NET MVC, SQL
 
 Description:
 
